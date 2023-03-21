@@ -20,8 +20,8 @@ class BaseEntity {
             image: this._frames[this._frameIdx], 
             x: this.x, 
             y: this.y, 
-            w: this.width, 
-            h: this.height  
+            width: this.width, 
+            height: this.height  
         });
 
     }

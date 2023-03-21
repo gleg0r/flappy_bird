@@ -1,5 +1,5 @@
 class DrawEngine {
-    drawImage(spriteSheet, image, x, y, w, h) {
+    drawImage(spriteSheet, image, x, y, width, height) {
         
     }
 
@@ -14,8 +14,8 @@ class CanvasDrawEngine extends DrawEngine {
         this._canvas = canvas;
         this._context = canvas.getContext('2d')
     }
-    drawImage(spriteSheet, image, x, y, w, h) {
-        super.drawImage(spriteSheet, image, x, y, w, h)
+    drawImage({spriteSheet, image, x, y, width, height}) {
+        super.drawImage({spriteSheet, image, x, y, width, height})
         this._context.drawImage(spriteSheet, image.x, image.y, image.w, image.h, x, y, width, height)
     }
 
