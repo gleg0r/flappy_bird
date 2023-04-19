@@ -1,27 +1,26 @@
 class Config {
-    gravity = 300;
-
     canvas = {
         id: 'game',
-        width: 480,
+        width: 280,
         height: 320
     }    
 
     animation = {
-        speed: 1
+        speed: 3.1,
     }
+
     spritesheet = {
         width: 606,
         height: 428,
-        src: './img/sprite.png'
-    }
+        src: 'img/sprite.png',
+    }   
 
     bird = {
-        x: 50,
-        y: 100,
+        x: 106,
+        y: 144,
         width: 34,
         height: 26,
-        flapSpeed: 300,
+        flapSpeed: 65,
 
         frames: [
             {
@@ -49,5 +48,34 @@ class Config {
                 h: 26
             }
         ]   
+    }
+
+    background = {
+        x: 0,
+        y: 0,
+        width: 600,
+        height: 480,
+
+        image: { 
+            x: 0,
+            y: 0,
+            w: 240,
+            h: 320
+        }
+    }
+
+    pipes = {
+        pipeDown: {
+            x: 500,
+            y: 0,
+            w: 54,
+            h: 250
+        },
+        pipeUp: {
+            x: 554,
+            y: 250,
+            w: 52,
+            h: 150
+        }
     }
 }

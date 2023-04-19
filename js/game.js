@@ -3,12 +3,16 @@ class Game {
         this._config = new Config();
 
         this._canvas = document.getElementById(this._config.canvas.id);
+        this._context = this._canvas.getContext('2d');
         this._canvas.width = this._config.canvas.width;
         this._canvas.height = this._config.canvas.height;
 
-        this._drawEngine = new CanvasDrawEngine({canvas: this._canvas,});
-        this._physicsEngine = new PhysicsEngine({gravity: this._config.gravity,}); 
+
+
+        this._drawEngine = new CanvasDrawEngine({canvas: this._canvas, config: this._config, width: this._config.spritesheet.width, height: this._config.spritesheet.height});
+        this._physicsEngine = new PhysicsEngine(); 
         this._resourceLoader = new ResourceLoader(); 
+
         this._inputHandler = new MouseInputHandler({
             left: (x, y) => {
                 this._bird.flap()
@@ -28,12 +32,13 @@ class Game {
             w: this._config.spritesheet.width,
             h: this._config.spritesheet.height
         })
-    }
+   }
+    
     _loop() {
         const now = Date.now();
         const delta = now - this._lastUpdate;
         if(this._playing) {
-            this.update(delta/1000.0);
+            this.update(delta / 1000.0);
             this._drawEngine.clear();
             this.draw();
     
@@ -51,20 +56,35 @@ class Game {
             width: this._config.bird.width,
             height: this._config.bird.height,
             frames: this._config.bird.frames,
-            spriteSheet: this._spriteSheet,
             flapSpeed: this._config.bird.flapSpeed,
             physicsEngine: this._physicsEngine,
             drawEngine: this._drawEngine,
             game: this,
         }); 
+        this._background = new Background({
+            config: this._config, 
+            context: this._context,
+            x: this._config.background.x,
+            y: this._config.background.y,
+            w: this._config.background.width,
+            h: this._config.background.height,
+            image: this._config.background.image
+        });
+        this._pipes = new Pipes(this._config, this._context)
     }
 
     update(delta) {
+        this._pipes.update(delta);
         this._bird.update(delta);
+        
+    
     }
 
     draw() {
+        this._background.update();
+        this._pipes.draw();
         this._bird.draw();
+        
     }
 
     start() {

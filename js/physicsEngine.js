@@ -1,6 +1,6 @@
 class PhysicsEngine {
-    constructor(gravity) {
-        this._gravity = gravity;
+    constructor() {
+        this._gravity = 3000;
     }
     update(entity, delta) {
         if(entity.falling) {

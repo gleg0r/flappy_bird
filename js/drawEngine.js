@@ -9,14 +9,18 @@ class DrawEngine {
 }
 
 class CanvasDrawEngine extends DrawEngine {
-    constructor({canvas}) {
+    constructor({canvas, config, width, height}) {
         super()
+        this._config = config;
         this._canvas = canvas;
-        this._context = canvas.getContext('2d')
+        this._context = canvas.getContext('2d');
+        this._spriteSheet = new Image(width, height);
+        this._spriteSheet.src = this._config.spritesheet.src;
+
     }
-    drawImage({spriteSheet, image, x, y, width, height}) {
-        super.drawImage({spriteSheet, image, x, y, width, height})
-        this._context.drawImage(spriteSheet, image.x, image.y, image.w, image.h, x, y, width, height)
+    drawImage({ image, x, y, width, height}) {
+        super.drawImage({ image, x, y, width, height})
+        this._context.drawImage(this._spriteSheet, image.x, image.y, image.w, image.h, x, y, width, height)
     }
 
     clear() {

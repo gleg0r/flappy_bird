@@ -4,6 +4,7 @@ class Bird extends BaseEntity{
         this._flapSpeed = params.flapSpeed;
         this._physicsEngine = params.physicsEngine;
         this.falling = true;
+        this.speed = 10;
     }
 
 
@@ -16,7 +17,7 @@ class Bird extends BaseEntity{
             this.y = 0;
         }
 
-        if(this.y + this.height >= this._game.height) {
+        if(this.y + 26 >= 320) {
             this._game.gameOver();
         }
 
@@ -24,5 +25,6 @@ class Bird extends BaseEntity{
 
     flap() {
         this.speed = -this._flapSpeed;
+        this.y = this.y - this._flapSpeed;
     }
 }
