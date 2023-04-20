@@ -1,5 +1,5 @@
 class Pipes {
-    constructor(config, context) {
+    constructor(config, context, game, bird) {
         
         this._config = config;
         this.canvasW = this._config.canvas.width;
@@ -16,6 +16,12 @@ class Pipes {
         
         this.randomPos = 0;
 
+        this._game = game;
+        this._bird = bird;
+        this.birdX = this._bird.x;
+        this.birdW = this._config.bird.width - 3;
+        
+        this.birdH = this._config.bird.height;
         this._spriteSheet = new Image(this._config.spritesheet.width, this._config.spritesheet.height);
         this._spriteSheet.src = this._config.spritesheet.src;
     }
@@ -25,12 +31,17 @@ class Pipes {
         this._context.drawImage(this._spriteSheet,this.pipeDown.x, this.pipeDown.y, this.pipeDown.w, this.pipeDown.h,this.x,this._canvasH - this.gap - this.randomPos,this.pipeDown.w,this.pipeDown.h);
     }
 
-    update(delta) {
+    update(delta, birdY) {
         if(this.x + this.pipeDown.w> 0) {
             this.x = this.x - (delta * this._speed);
         } else {
             this.x = 280
             this.randomHeight();
+        }
+        this.birdY = birdY;
+
+         if(this.birdX + this.birdW >= this.x && this.birdX <= this.x + this.pipeUp.w && (this.birdY <= this.pipeUpY + this.pipeUp.h - this.randomPos || this.birdY + this.birdH >= this._canvasH - this.gap - this.randomPos ) ) {
+            this._game.gameOver();
         }
     }
 

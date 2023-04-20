@@ -70,19 +70,20 @@ class Game {
             h: this._config.background.height,
             image: this._config.background.image
         });
-        this._pipes = new Pipes(this._config, this._context)
+        this._pipes = new Pipes(this._config, this._context, this, this._bird);
+        this._ground = new Ground(this._context, this._config);
     }
 
     update(delta) {
-        this._pipes.update(delta);
+        this._pipes.update(delta, this._bird.y);
         this._bird.update(delta);
-        
-    
+
     }
 
     draw() {
         this._background.update();
         this._pipes.draw();
+        this._ground.draw()
         this._bird.draw();
         
     }
@@ -93,7 +94,7 @@ class Game {
         this._lastUpdate = Date.now();
         this.reset();
         this._loop();
-    }
+    }   
 
     gameOver() {
         this._playing = false;

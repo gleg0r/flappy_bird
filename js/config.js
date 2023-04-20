@@ -20,7 +20,7 @@ class Config {
         y: 144,
         width: 34,
         height: 26,
-        flapSpeed: 65,
+        flapSpeed: 52,
 
         frames: [
             {
@@ -76,6 +76,15 @@ class Config {
             y: 250,
             w: 52,
             h: 150
+        }
+    }
+
+    ground = {
+        frame: {
+            x: 276,
+            y: 0,
+            w: 224,
+            h: 30
         }
     }
 }
