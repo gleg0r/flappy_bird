@@ -49,6 +49,8 @@ class Game {
             this._lastUpdate = now;
     
             requestAnimationFrame(this._loop.bind(this))
+        } else {
+            this._gameOver.draw();
         }
     }
 
@@ -113,6 +115,6 @@ class Game {
 
     gameOver() {
         this._playing = false;
-        this._gameOver.draw()
+        
     }
 }

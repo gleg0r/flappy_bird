@@ -89,10 +89,10 @@ class Config {
     }
 
     gameOver = {
-        x: 0,
-        y: 0,
-        w: 100,
-        h: 20,
+        x: 50,
+        y: 130,
+        w: 195,
+        h: 38,
         frame: {
             x: 195,
             y: 230,

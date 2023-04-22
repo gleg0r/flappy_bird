@@ -15,7 +15,7 @@ class Death {
     }
 
     draw() {
-        this._context.drawImage(this._spriteSheet, this.image.x,this.image.y,this.image.w,this.image.h, this.x, this.y,this.w,this.h)
+        this._context.drawImage(this._spriteSheet, this.image.x, this.image.y, this.image.w, this.image.h, this.x, this.y, this.w, this.h)
 
     }
 }
