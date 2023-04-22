@@ -12,7 +12,7 @@ class Pipes {
 
         this.x = 280;
         this.pipeUpY = 0;
-        this.gap = 78;
+        this.gap = 50;
         
         this.randomPos = 0;
 
@@ -40,9 +40,9 @@ class Pipes {
         }
         this.birdY = birdY;
 
-         if(this.birdX + this.birdW >= this.x && this.birdX <= this.x + this.pipeUp.w && (this.birdY <= this.pipeUpY + this.pipeUp.h - this.randomPos || this.birdY + this.birdH >= this._canvasH - this.gap - this.randomPos ) ) {
+        if(this.birdX + this.birdW >= this.x && this.birdX <= this.x + this.pipeUp.w && (this.birdY <= this.pipeUpY + this.pipeUp.h - this.randomPos || this.birdY + this.birdH >= this._canvasH - this.gap - this.randomPos ) ) {
             this._game.gameOver();
-        }
+        } 
     }
 
     randomHeight() {

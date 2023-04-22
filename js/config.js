@@ -52,7 +52,7 @@ class Config {
 
     background = {
         x: 0,
-        y: 0,
+        y: 115,
         width: 600,
         height: 480,
 
@@ -85,6 +85,19 @@ class Config {
             y: 0,
             w: 224,
             h: 30
+        }
+    }
+
+    gameOver = {
+        x: 0,
+        y: 0,
+        w: 100,
+        h: 20,
+        frame: {
+            x: 195,
+            y: 230,
+            w: 190,
+            h: 38
         }
     }
 }

@@ -18,7 +18,7 @@ class Bird extends BaseEntity{
         }
 
         if(this.y + 26 >= 290) {
-          //  this._game.gameOver();
+            this._game.gameOver();
         }
 
     }

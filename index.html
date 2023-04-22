@@ -6,19 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy bird</title>
     <style>
+        body {
+            position: relative;
+        }
         canvas {
             background-color: #00AAFF;
+        }
+        .score-block {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background-color: wheat;
+            border: #FFBC00 solid 3px;
+            border-radius: 10%;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .score-block__now {
+            padding: 0;
+            margin: 0;
+        }
+        .score-block__best {
+            padding: 0;
+            margin: 0;
         }
     </style>
 </head>
 <body>
+
     <canvas id="game"></canvas>
+    <div class="score-block">
+        <p class="score-block__now"">SCORE: <span class="score-block__points" id="js-score"></span></p>
+        <p class="score-block__best">BEST: <span class="score-block__best" id="js-bestScore"></span></p>
+    </div>
+
+
     <script src="js/config.js"></script>
     <script src="js/entities/base.js"></script>
     <script src="js/background.js"></script>
     <script src="js/entities/bird.js"></script>
     <script src="js/entities/pipes.js"></script>
     <script src="js/entities/ground.js"></script>
+    <script src="js/death.js"></script>
     <script src="js/drawEngine.js"></script>
     <script src="js/physicsEngine.js"></script>
     <script src="js/inputHandlers.js"></script>

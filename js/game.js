@@ -6,12 +6,16 @@ class Game {
         this._context = this._canvas.getContext('2d');
         this._canvas.width = this._config.canvas.width;
         this._canvas.height = this._config.canvas.height;
-
-
-
+        this._scoreBlock = document.getElementById('js-score');
+        this._bestScoreBlock = document.getElementById('js-bestScore');
+        this._score = 0;
+        this._scoreBlock.innerHTML = this._score;
+        this._bestScore = localStorage.getItem('bestScore');
+        this._bestScoreBlock.innerHTML = this._bestScore;
         this._drawEngine = new CanvasDrawEngine({canvas: this._canvas, config: this._config, width: this._config.spritesheet.width, height: this._config.spritesheet.height});
         this._physicsEngine = new PhysicsEngine(); 
         this._resourceLoader = new ResourceLoader(); 
+
 
         this._inputHandler = new MouseInputHandler({
             left: (x, y) => {
@@ -72,12 +76,23 @@ class Game {
         });
         this._pipes = new Pipes(this._config, this._context, this, this._bird);
         this._ground = new Ground(this._context, this._config);
+        this._gameOver = new Death(this._config, this._context);
     }
 
     update(delta) {
         this._pipes.update(delta, this._bird.y);
         this._bird.update(delta);
+        if(Math.round(this._pipes.x) === this._canvas.width / 2 - this._config.pipes.pipeUp.w) {
+            this._score += 1;
+            if(this._bestScore < this._score) {
+                this._bestScore = this._score;
+                this._bestScoreBlock.innerHTML = this._bestScore;
+                localStorage.setItem('bestScore', this._bestScore);
+            }
 
+            this._scoreBlock.innerHTML = this._score;
+
+        } 
     }
 
     draw() {
@@ -98,6 +113,6 @@ class Game {
 
     gameOver() {
         this._playing = false;
-        alert('Game over: ${this._score}')
+        this._gameOver.draw()
     }
 }
